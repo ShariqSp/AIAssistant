@@ -2,5 +2,5 @@ package com.pluspay.chatbot_plugin.models
 
 data class GeneralPromptRequest(
     val question: String? ="",
-    val tenant : String ?= "pluspay"
+    val tenant : String ?= "bharath yathra"
 )

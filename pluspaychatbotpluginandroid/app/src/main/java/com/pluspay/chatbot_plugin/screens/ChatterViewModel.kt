@@ -49,7 +49,7 @@ open class ChatViewModel : ViewModel() {
             try {
                 val response = generalPromptApiService.plusPayGeneralPrompts(
                     GeneralPromptRequest(
-                        question = message, tenant = "pluspay"
+                        question = message,
                     )
                 )
                 val botReply = response.response
