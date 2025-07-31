@@ -21,4 +21,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "pluspay-chatbot-plugin-android"
 include(":app")
-include(":chatterplugin")

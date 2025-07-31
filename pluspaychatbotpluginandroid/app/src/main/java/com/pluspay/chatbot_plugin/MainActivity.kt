@@ -1,47 +1,39 @@
 package com.pluspay.chatbot_plugin
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.pluspay.chatbot_plugin.screens.ChatViewModel
+import com.pluspay.chatbot_plugin.screens.ChatterScreen
 import com.pluspay.chatbot_plugin.ui.theme.PluspaychatbotpluginandroidTheme
 
 class MainActivity : ComponentActivity() {
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             PluspaychatbotpluginandroidTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                val vm: ChatViewModel by viewModels()
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    content = {
+                        ChatterScreen(
+                            viewModel = vm,
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(it) // Apply padding to avoid content being obscured by system bars
+                        )
+                    }
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PluspaychatbotpluginandroidTheme {
-        Greeting("Android")
     }
 }
