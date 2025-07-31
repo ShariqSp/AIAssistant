@@ -82,7 +82,7 @@ open class ChatViewModel : ViewModel() {
             try {
                 val response = plusPayGuideStepsApiService.plusPayGuideSteps(
                     AppGuideStepsRequest(
-                        question = if(TextUtils.isEmpty(message)) "Guide to use PlusPay" else message,
+                        question = if(TextUtils.isEmpty(message)) "Guide to use Bharath Yathra Card" else message,
                     )
                 )
                 val botReply = response.response

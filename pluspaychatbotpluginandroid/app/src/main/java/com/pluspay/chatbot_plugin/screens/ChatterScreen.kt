@@ -188,7 +188,7 @@ fun ChatBubble(message: ChatMessage, viewModel: ChatViewModel, onChatModeChange:
             if( message.isBotFirstMessage == true ) {
                 Column {
                     Text(
-                        text = "I'm your personal PlusPay AI assistant here to help you manage your spending, split bills, track expenses, and get smart insights about your money. Think of me as your financial buddy, always ready to assist!",
+                        text = "I'm your personal Bharat Yatra AI assistant — here to help you manage your travel expenses, track your card usage, and get smart insights during your journeys. Think of me as your travel-savvy companion, always ready to assist!",
                         color = textColor,
                         softWrap = true,
                         textAlign = if (message.isUser) TextAlign.End else TextAlign.Start,
@@ -196,9 +196,9 @@ fun ChatBubble(message: ChatMessage, viewModel: ChatViewModel, onChatModeChange:
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = "\uD83D\uDCA1 I can assist you with:\n" +
-                                "Viewing your transaction data" +
-                                "\nGenerating smart insights about your spending" +
-                                "\nGuiding you through PlusPay app features & steps\n\n" +
+                                "Viewing your Bharat Yatra card transactions\n" +
+                                "Generating smart insights from your travel spends\n" +
+                                "Guiding you through Bharat Yatra features and usage steps\n" +
                                 "\uD83D\uDC47 Please select an option below or just type your query:",
                         color = textColor,
                         softWrap = true,
@@ -219,7 +219,7 @@ fun ChatBubble(message: ChatMessage, viewModel: ChatViewModel, onChatModeChange:
                             },
                     ) {
                         Text(
-                            text = "\uD83D\uDD0D Transactions & Insights",
+                            text = "\uD83D\uDD0D View Transactions & Insights",
                             color = textColor,
                             softWrap = true,
                             textAlign = TextAlign.Center
@@ -240,7 +240,7 @@ fun ChatBubble(message: ChatMessage, viewModel: ChatViewModel, onChatModeChange:
                             },
                     ) {
                         Text(
-                            text = "\uD83D\uDCF1 PlusPay App Guide",
+                            text = "\uD83D\uDCD8 Bharat Yatra Card Guide",
                             color = textColor,
                             softWrap = true,
                             textAlign = TextAlign.Center
@@ -252,7 +252,7 @@ fun ChatBubble(message: ChatMessage, viewModel: ChatViewModel, onChatModeChange:
                     text = message.text,
                     color = textColor,
                     softWrap = true,
-                    textAlign = if (message.isUser) TextAlign.End else TextAlign.Start,
+                    textAlign = if (message.isUser) TextAlign.Start else TextAlign.Start,
                 )
             }
         }
