@@ -11,10 +11,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextAlign
@@ -24,6 +28,10 @@ import com.pluspay.chatterplugin.models.ChatMessage
 import com.pluspay.chatterplugin.ui.theme.provideChatterColors
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+
+enum class ChatMode {
+    NORMAL, APP_GUIDE, TRANSACTIONS_INSIGHTS
+}
 
 @Composable
 fun ChatterScreen(
@@ -35,6 +43,9 @@ fun ChatterScreen(
     var input by remember { mutableStateOf("") }
     val listState = rememberLazyListState()
     val colors = provideChatterColors()
+    val chatMode by viewModel.chatMode.collectAsState()
+    val isLinearLoading by viewModel.isLinearLoading.collectAsState()
+
 
     LaunchedEffect(messages.size) {
         if (messages.isNotEmpty()) {
@@ -51,15 +62,35 @@ fun ChatterScreen(
                 .fillMaxSize()
                 .padding(top = 50.dp, start = 16.dp, end = 16.dp, bottom = 60.dp)
         ) {
-            LazyColumn(
-                state = listState,
+            AnimatedContent(
                 modifier = Modifier.weight(1f),
-                reverseLayout = false
-            ) {
-                items(messages) { message ->
-                    ChatBubble(message)
-                    Spacer(modifier = Modifier.height(8.dp))
+                targetState = messages,
+                transitionSpec = { fadeIn() togetherWith fadeOut() },
+                label = "ChatMessagesAnimation"
+            ) { animatedMessages ->
+                LazyColumn(
+                    state = listState,
+                    modifier = Modifier.weight(1f),
+                    reverseLayout = false
+                ) {
+                    items(animatedMessages) { message ->
+                        ChatBubble(
+                            message,
+                            viewModel,
+                            onChatModeChange = { viewModel.setChatMode(it) }
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                    }
                 }
+            }
+
+            if(isLinearLoading){
+                LinearProgressIndicator(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(colors.botBubble)
+                        .padding(bottom = 2.dp)
+                )
             }
 
             Row(
@@ -102,9 +133,15 @@ fun ChatterScreen(
                         )
                     } else {
                         Button(
+                            modifier = Modifier
+                                .height(54.dp),
                             onClick = {
                                 if (input.isNotBlank()) {
-                                    viewModel.sendMessage(input)
+                                    when (chatMode) {
+                                        ChatMode.NORMAL -> viewModel.generalPrompt(input)
+                                        ChatMode.APP_GUIDE -> viewModel.plusPayAppGuide(input)
+                                        ChatMode.TRANSACTIONS_INSIGHTS -> viewModel.transactionAndInsights(input)
+                                    }
                                     input = ""
                                 }
                             },
@@ -116,11 +153,24 @@ fun ChatterScreen(
                 }
             }
         }
+
+        FloatingActionButton(
+            onClick = { viewModel.resetChat() },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(end = 20.dp, bottom = 140.dp),
+            containerColor = colors.clickableBox// or any color you prefer
+        ) {
+            Icon(
+                imageVector = Icons.Rounded.Refresh,
+                contentDescription = "Reset Chat"
+            )
+        }
     }
 }
 
 @Composable
-fun ChatBubble(message: ChatMessage) {
+fun ChatBubble(message: ChatMessage, viewModel: ChatViewModel, onChatModeChange: (ChatMode) -> Unit) {
     val colors = provideChatterColors()
     val bgColor = if (message.isUser) colors.userBubble else colors.botBubble
     val textColor = if (message.isUser) colors.userText else colors.botText
@@ -166,7 +216,8 @@ fun ChatBubble(message: ChatMessage) {
                             .padding(8.dp)
                             .fillMaxWidth()
                             .clickable {
-
+                                viewModel.transactionAndInsights("")
+                                onChatModeChange(ChatMode.TRANSACTIONS_INSIGHTS)
                             },
                     ) {
                         Text(
@@ -186,7 +237,8 @@ fun ChatBubble(message: ChatMessage) {
                             .padding(8.dp)
                             .fillMaxWidth()
                             .clickable {
-
+                                viewModel.plusPayAppGuide("")
+                                onChatModeChange(ChatMode.APP_GUIDE)
                             },
                     ) {
                         Text(
@@ -221,7 +273,7 @@ fun ChatterScreenPreview() {
     )
     val fakeViewModel = object : ChatViewModel() {
         override val messages: StateFlow<List<ChatMessage>> = MutableStateFlow(sampleMessages)
-        override fun sendMessage(text: String) {}
+        override fun generalPrompt(message: String?) {}
     }
     ChatterScreen(viewModel = fakeViewModel)
 }

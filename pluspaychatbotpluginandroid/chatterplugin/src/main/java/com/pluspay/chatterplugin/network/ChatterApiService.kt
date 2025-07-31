@@ -29,6 +29,18 @@ interface ChatterApiService {
         private fun getRetrofit(baseUrl: String): Retrofit {
             return Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(
+                    okhttp3.OkHttpClient.Builder()
+                        .connectTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+                        .readTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+                        .writeTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+                        .addInterceptor(
+                            okhttp3.logging.HttpLoggingInterceptor().apply {
+                                level = okhttp3.logging.HttpLoggingInterceptor.Level.BODY
+                            }
+                        )
+                        .build()
+                )
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
