@@ -252,7 +252,7 @@ fun ChatBubble(message: ChatMessage, viewModel: ChatViewModel, onChatModeChange:
                     text = message.text,
                     color = textColor,
                     softWrap = true,
-                    textAlign = if (message.isUser) TextAlign.End else TextAlign.Start,
+                    textAlign = if (message.isUser) TextAlign.Start else TextAlign.Start,
                 )
             }
         }
