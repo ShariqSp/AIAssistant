@@ -53,7 +53,7 @@ fun ChatterScreen(
     }
 
     Box(
-        modifier = Modifier.background(colors.background)
+        modifier = Modifier.background(colors.background).fillMaxSize().imePadding()
     ) {
         Column(
             modifier = Modifier
@@ -95,7 +95,6 @@ fun ChatterScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .imePadding()
             ) {
                 TextField(
                     value = input,
