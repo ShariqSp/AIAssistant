@@ -1,4 +1,4 @@
-package com.pluspay.chatbot_plugin.screens
+package com.bharat_yatra.chat_bot_plugin.screens
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
@@ -22,8 +22,8 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.pluspay.chatbot_plugin.models.ChatMessage
-import com.pluspay.chatbot_plugin.theme.provideChatterColors
+import com.bharat_yatra.chat_bot_plugin.models.ChatMessage
+import com.bharat_yatra.chat_bot_plugin.theme.provideChatterColors
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

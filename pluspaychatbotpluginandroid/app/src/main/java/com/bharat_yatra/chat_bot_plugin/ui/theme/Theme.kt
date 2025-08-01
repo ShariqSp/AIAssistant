@@ -1,6 +1,5 @@
-package com.pluspay.chatbot_plugin.ui.theme
+package com.bharat_yatra.chat_bot_plugin.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

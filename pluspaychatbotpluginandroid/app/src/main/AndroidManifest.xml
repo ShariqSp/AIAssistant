@@ -11,14 +11,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Pluspaychatbotpluginandroid"
+        android:theme="@style/Theme.BharatYatrachatbotpluginandroid"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.bharat_yatra.chat_bot_plugin.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustResize"
-            android:theme="@style/Theme.Pluspaychatbotpluginandroid">
+            android:theme="@style/Theme.BharatYatrachatbotpluginandroid">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

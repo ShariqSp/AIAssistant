@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.pluspay.chatbot_plugin"
+    namespace = "com.bharat_yatra.chatbot_plugin"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.pluspay.chatbot_plugin"
+        applicationId = "com.bharat_yatra.chatbot_plugin"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

@@ -1,4 +1,4 @@
-package com.pluspay.chatbot_plugin
+package com.bharat_yatra.chat_bot_plugin
 
 import org.junit.Test
 

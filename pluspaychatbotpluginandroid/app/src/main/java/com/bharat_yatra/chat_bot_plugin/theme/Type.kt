@@ -1,4 +1,4 @@
-package com.pluspay.chatbot_plugin.ui.theme
+package com.bharat_yatra.chat_bot_plugin.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

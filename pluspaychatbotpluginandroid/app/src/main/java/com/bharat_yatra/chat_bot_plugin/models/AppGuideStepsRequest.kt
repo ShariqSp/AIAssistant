@@ -1,4 +1,4 @@
-package com.pluspay.chatbot_plugin.models
+package com.bharat_yatra.chat_bot_plugin.models
 
 data class AppGuideStepsRequest(
     val question: String? = "",

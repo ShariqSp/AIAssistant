@@ -1,13 +1,13 @@
-package com.pluspay.chatbot_plugin.screens
+package com.bharat_yatra.chat_bot_plugin.screens
 
 import android.text.TextUtils
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pluspay.chatbot_plugin.models.AppGuideStepsRequest
-import com.pluspay.chatbot_plugin.models.ChatMessage
-import com.pluspay.chatbot_plugin.network.ChatterApiService
-import com.pluspay.chatbot_plugin.models.ChatterRequest
-import com.pluspay.chatbot_plugin.models.GeneralPromptRequest
+import com.bharat_yatra.chat_bot_plugin.models.AppGuideStepsRequest
+import com.bharat_yatra.chat_bot_plugin.models.ChatMessage
+import com.bharat_yatra.chat_bot_plugin.network.ChatterApiService
+import com.bharat_yatra.chat_bot_plugin.models.ChatterRequest
+import com.bharat_yatra.chat_bot_plugin.models.GeneralPromptRequest
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 

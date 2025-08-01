@@ -1,10 +1,10 @@
-package com.pluspay.chatbot_plugin.network
+package com.bharat_yatra.chat_bot_plugin.network
 
-import com.pluspay.chatbot_plugin.models.AppGuideStepsRequest
-import com.pluspay.chatbot_plugin.models.AppGuideStepsResponse
-import com.pluspay.chatbot_plugin.models.ChatterRequest
-import com.pluspay.chatbot_plugin.models.ChatterResponse
-import com.pluspay.chatbot_plugin.models.GeneralPromptRequest
+import com.bharat_yatra.chat_bot_plugin.models.AppGuideStepsRequest
+import com.bharat_yatra.chat_bot_plugin.models.AppGuideStepsResponse
+import com.bharat_yatra.chat_bot_plugin.models.ChatterRequest
+import com.bharat_yatra.chat_bot_plugin.models.ChatterResponse
+import com.bharat_yatra.chat_bot_plugin.models.GeneralPromptRequest
 import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
